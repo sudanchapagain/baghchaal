@@ -1,8 +1,14 @@
 .PHONY: build clean
 
+CFLAGS := -std=c99 -Wall -Wextra $(shell pkg-config --cflags raylib)
+LDFLAGS := $(shell pkg-config --libs raylib)
+
 clean:
 	rm -rf build/
 
 build:
 	mkdir -p build/
-	cc -std=c99 src/main.c -Wall -Wextra -lraylib -o build/baghchaal
+	cc src/main.c $(CFLAGS) -o build/baghchaal $(LDFLAGS)
+
+run: build
+	./build/baghchaal

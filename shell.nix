@@ -1,8 +1,14 @@
-with import <nixpkgs> { };
+{ pkgs ? import <nixpkgs> {} }:
 
-mkShell {
-    buildInputs = [
-        raylib
-        pkg-config
-    ];
+pkgs.mkShell {
+  buildInputs = [
+    pkgs.libX11
+    pkgs.libxrandr
+    pkgs.libxi
+    pkgs.libxcursor
+    pkgs.libxinerama
+    pkgs.mesa
+    pkgs.raylib
+    pkgs.pkg-config
+  ];
 }
